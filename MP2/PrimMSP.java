@@ -61,11 +61,11 @@ public class PrimMSP<L> {
             throw new NullPointerException("grafo o nodo nullo");
         if (!g.getNodes().contains(s))
             throw new IllegalArgumentException("nodo non contenuto");
-        if (g.isDirected()) {
-            for (GraphEdge<L> e : g.getEdges())
-                if (!e.hasWeight() || e.getWeight() < 0)
-                    throw new IllegalArgumentException("not ok");
-        }
+        if (g.isDirected())
+            throw new IllegalArgumentException("not ok");
+        for (GraphEdge<L> e : g.getEdges())
+            if (!e.hasWeight() || e.getWeight() < 0)
+                throw new IllegalArgumentException("not ok");
         //inizialmente per ogni nodo setto la priorità a infinito e il precedente a null.
         for (GraphNode<L> v : g.getNodes()) {
             v.setPriority(INF);
@@ -87,11 +87,7 @@ public class PrimMSP<L> {
             //prendo tutti i nodi adiacenti a lui
             for(GraphNode<L> v : g.getAdjacentNodesOf(s)){
                 //controllo che il nodo non sia gia stato visitato.
-                if(v.getColor() != GraphNode.COLOR_BLACK) {
-                    //se la distanza tra il nodo iterato e il nodo adiacente iterato in questo
-                    //momento, è minore della priorità del nodo adiacente, al nodo adiacente
-                    //setto la priorità uguale alla distanza tra i due (peso dell'arco)
-
+                if(v.getColor() != GraphNode.COLOR_BLACK) {  
                     //prendo ogni arco del nodo estratto dalla coda
                     for (GraphEdge<L> e : g.getEdgesOf(s)) {
                         pesoArco = e.getWeight();
