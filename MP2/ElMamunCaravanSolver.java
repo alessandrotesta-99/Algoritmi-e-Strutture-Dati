@@ -89,12 +89,11 @@ public class ElMamunCaravanSolver {
                 //se j è minore di i, riempio le altre diagonali
                 else if(i < j && expression.get(i).getType() == ItemType.DIGIT
                         && expression.get(j).getType() == ItemType.DIGIT){
-                    for(int k = i; k < j; k++){
-                        //per tutti i valori che rispettano questa condizione.
-                        if(i + k + 2 <= j){
-                            //operatore che divide i due sottoproblemi (le sottoespressioni)
-                            Object e = expression.get(i+k+1).getValue();
-                            tracebackTable[i][j] = k;
+                    for(int k = i; i+k+2 <= j; k++){
+                       //operatore che divide i due sottoproblemi (le sottoespressioni)
+                       Object e = expression.get(i+k+1).getValue();     
+                        //TODO - da continuare e correggere.                      
+                          tracebackTable[i][j] = k;
                         }
                     }
                 }
