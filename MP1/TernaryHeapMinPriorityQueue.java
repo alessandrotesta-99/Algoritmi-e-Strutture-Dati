@@ -107,10 +107,8 @@ public class TernaryHeapMinPriorityQueue {
             throw new NoSuchElementException("this deque is empty");
         //prendo il minimo
         PriorityQueueElement min = this.heap.get(0);
-        //l'ultima foglia la metto all'inizio
-        this.heap.set(0, this.heap.get(heap.size() - 1));
-        //nel posto dove c'era l'ultima foglia ci metto la foglia che stava in cima, la piu piccola.
-        this.heap.set(this.heap.size() - 1, min);
+        //effettuo lo scambio
+        swap(0, heap.size()-1);     
         //rimuovo il nodo da estrarre, ovvero la foglia piu piccola
         this.heap.remove(min);
         //controllo se lo heap è min-heap.
